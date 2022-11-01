@@ -1,3 +1,5 @@
+const express = require("express");
+var router = express.Router();
 let mongoose = require("mongoose");
 const { Schema } = mongoose;
 
@@ -21,3 +23,22 @@ msg
   .catch((err) => {
     console.error(err);
   });
+
+//Implementing CRUD operations
+
+//Post
+router.post("/save", function (req, res) {
+  var newUser = new userModel();
+  newUser.name = req.body.name;
+  newUser.lastname = req.body.lastname;
+  newUser.email = req.body.email;
+  newUser.password = req.body.password;
+
+  newUser.save(function (err, data) {
+    if (err) {
+      console.log(error);
+    } else {
+      res.send("Data inserted");
+    }
+  });
+});
