@@ -13,7 +13,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
-import signup from "./signup";
+import SigninService from "../Service/SigninService";
 
 function Copyright(props) {
   return (
@@ -35,7 +35,7 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignIn() {
+export default function Signin() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -43,6 +43,7 @@ export default function SignIn() {
     let password = data.get("password");
     const obj = [email, password];
     console.log(obj);
+    const response = SigninService(obj);
   };
   const navigate = useNavigate();
   const handle = () => {
