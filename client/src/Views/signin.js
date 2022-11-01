@@ -14,6 +14,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import SigninService from "../Service/SigninService";
+import Cookies from "universal-cookie";
 
 function Copyright(props) {
   return (
@@ -44,8 +45,9 @@ export default function Signin() {
     const obj = [email, password];
     console.log(obj);
     const response = SigninService(obj);
+    const cookies = new Cookies();
+    cookies.set("email", email, { path: "/" });
     console.log(response);
-
   };
   const navigate = useNavigate();
   const handle = () => {
