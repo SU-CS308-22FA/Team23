@@ -7,12 +7,9 @@ const userModel = require("../models/user.model");
 //   res.send("respond with a resource");
 // });
 
-router.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  next();
-});
 
-router.post("/login", function (req, res) {
+
+router.post("/signup", function (req, res) {
   //check if the user registered before
   var newUser = new userModel();
   newUser.name = req.body.name;
@@ -31,8 +28,8 @@ router.post("/login", function (req, res) {
   //res.send("Login page");
 });
 
-router.get("/signup", function (req, res) {
-  res.send("Signup page");
+router.get("/signin", function (req, res) {
+  res.send("Signin page");
 });
 
 router.get("/profile", function (req, res) {

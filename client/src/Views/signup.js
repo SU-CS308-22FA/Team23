@@ -14,7 +14,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import signin from "./signin";
-
+import SignupService from "../Service/SignupService";
 function Copyright(props) {
   return (
     <Typography
@@ -39,10 +39,13 @@ export default function SignUp() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    let name = data.get("firstName");
+    let lastname = data.get("lastName");
+    let email = data.get("email");
+    let password = data.get("password");
+    const obj = [name, lastname, email, password];
+    console.log(obj);
+    const response = SignupService(obj);
   };
 
   const navigate = useNavigate();

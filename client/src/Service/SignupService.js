@@ -1,9 +1,9 @@
 import axios, * as others from "axios";
 
-export default async function LoginService(props) {
+export default async function SignupService(props) {
+  let userEmail = props[2];
   let userName = props[0];
   let userLastname = props[1];
-  let userEmail = props[2];
   let userPassword = props[3];
   console.log(props[0], userPassword);
   var data = JSON.stringify({
@@ -16,7 +16,7 @@ export default async function LoginService(props) {
 
   var config = {
     method: "post",
-    url: "http://localhost:3000/users/login",
+    url: "http://localhost:3000/users/signup",
     headers: {
       "Content-Type": "application/json",
     },
