@@ -36,6 +36,13 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
+
+  const navigate = useNavigate();
+  const handle = () => {
+    navigate("/signin");
+  };
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -46,12 +53,13 @@ export default function SignUp() {
     const obj = [name, lastname, email, password];
     console.log(obj);
     const response = SignupService(obj);
+    console.log(response);
+
+
+    handle();
+
   };
 
-  const navigate = useNavigate();
-  const handle = () => {
-    navigate("/signin");
-  };
 
   return (
     <ThemeProvider theme={theme}>

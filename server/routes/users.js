@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 const userModel = require("../models/user.model");
 let bcrypt = require('bcrypt');
+let auth = require('../controller/auth');
 
 // /* GET users listing. */
 // router.get("/", function (req, res, next) {
@@ -13,7 +14,6 @@ router.post("/signin", async (req, res) => {
   let password = req.body.password;
 
   let users = await userModel.find().where({ email: email });
-  console.log("success");
   if (users.length > 0) {
     let comparisonResult = await bcrypt.compare(password, users[0].password);
     if (comparisonResult) {
@@ -21,14 +21,13 @@ router.post("/signin", async (req, res) => {
       res.cookie('auth_token', token);
       res.send({
         redirectURL: '/',
-        message: 'Success'
+        message: 'correct email'
       });
-      console.log("success");
     } else {
-      console.log("rejected2");
+      console.log("wrong password");
     }
   } else {
-    console.log("rejected");
+    console.log("wrong email");
   }
 })
 
@@ -48,7 +47,10 @@ router.post("/signup", async (req, res) => {
       if (err) {
         console.log(error);
       } else {
-        res.send("Data inserted");
+        res.send({
+          redirectURL: '/signin',
+          message: 'data inserted'
+        });
       }
     });
     res.send({ message: 'Done' });

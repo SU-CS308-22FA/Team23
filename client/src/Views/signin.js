@@ -44,6 +44,8 @@ export default function Signin() {
     const obj = [email, password];
     console.log(obj);
     const response = SigninService(obj);
+    console.log(response);
+
   };
   const navigate = useNavigate();
   const handle = () => {

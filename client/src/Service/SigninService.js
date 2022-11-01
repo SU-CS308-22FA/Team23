@@ -22,6 +22,7 @@ export default async function SigninService(props) {
     axios(config)
         .then(function (response) {
             console.log(JSON.stringify(response.data));
+            return 1;
         })
         .catch(function (error) {
             console.log(error);
