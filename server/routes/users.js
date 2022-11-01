@@ -53,7 +53,6 @@ router.post("/signup", async (req, res) => {
         });
       }
     });
-    res.send({ message: 'Done' });
   } else {
     res.send({ message: 'Rejected' });
   }
