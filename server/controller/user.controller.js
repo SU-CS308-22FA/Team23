@@ -2,7 +2,7 @@ let mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const { MongoClient, MongoGridFSChunkError } = require("mongodb");
-const userModel = require("../models/user");
+const userModel = require("../models/user.model");
 
 let msg = new userModel({
   name: "Musti",
