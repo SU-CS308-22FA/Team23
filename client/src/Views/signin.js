@@ -14,6 +14,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import signup from "./signup";
+import LoginService from "../Service/LoginService";
 
 function Copyright(props) {
   return (
@@ -39,10 +40,13 @@ export default function SignIn() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    let email = data.get("email");
+    let password = data.get("password");
+    let name = data.get("name");
+    let lastname = data.get("lastname");
+    const obj = [email, password, name, lastname];
+    console.log(obj);
+    const response = LoginService(obj);
   };
   const navigate = useNavigate();
   const handle = () => {
@@ -92,6 +96,26 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="name"
+              label="Name"
+              type="name"
+              id="name"
+              autoComplete="name"
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="lastname"
+              label="Lastname"
+              type="lastname"
+              id="lastname"
+              autoComplete="lastname"
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}

@@ -3,6 +3,7 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+var cors = require("cors");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -41,5 +42,20 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
+
+// const corsOpts = {
+//   origin: "*",
+
+//   methods: ["GET", "POST", "DELETE", "UPDATE"],
+
+//   allowedHeaders: ["Content-Type", "Access-Control-Allow-Origin"],
+// };
+
+// app.use(cors(corsOpts));
+
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   next();
+// });
 
 module.exports = app;

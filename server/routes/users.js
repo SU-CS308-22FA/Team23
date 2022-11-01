@@ -7,6 +7,11 @@ const userModel = require("../models/user.model");
 //   res.send("respond with a resource");
 // });
 
+router.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
+
 router.post("/login", function (req, res) {
   //check if the user registered before
   var newUser = new userModel();
