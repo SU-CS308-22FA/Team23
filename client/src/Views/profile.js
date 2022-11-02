@@ -22,6 +22,13 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import ProfileService from "../Service/ProfileService";
 import DeleteService from "../Service/DeleteService";
 import { useNavigate } from "react-router-dom";
+import IconButton from '@mui/material/IconButton';
+import Input from '@mui/material/Input';
+import FilledInput from '@mui/material/FilledInput';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormHelperText from '@mui/material/FormHelperText';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 function Copyright(props) {
   return (
@@ -51,6 +58,33 @@ export default function Profile() {
   cookie.get("email");
   const email = cookie.cookies.email;
   let user1 = {};
+
+  const [values, setValues] = React.useState({
+    oldPassword: '',
+    newPassword: '',
+
+    oldShowPassword: false,
+    newShowPassword: false,
+  });
+
+  const handleChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
+
+  const handleClickOldShowPassword = () => {
+    setValues({
+      ...values,
+      oldShowPassword: !values.oldShowPassword,
+    });
+  };
+
+  const handleClickNewShowPassword = () => {
+    setValues({
+      ...values,
+      newShowPassword: !values.newShowPassword,
+    });
+  };
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -188,26 +222,57 @@ export default function Profile() {
                   alignItems: "center",
                 }}
               ></Box>
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    autoComplete="given-name"
+              <Grid container spacing={2}
+                fullWidth
+                direction="row"
+                alignItems="center"
+                justifyContent="center">
+                <FormControl sx={{ m: 1, width: '25ch', }} variant="outlined">
+                  <InputLabel htmlFor="outlined-adornment-password">Old Password</InputLabel>
+                  <OutlinedInput
                     name="oldPassword"
-                    fullWidth
                     id="Old Password"
+
+                    type={values.oldShowPassword ? 'text' : 'password'}
+                    value={values.oldPassword}
+                    onChange={handleChange('oldPassword')}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickOldShowPassword}
+                          edge="end"
+                        >
+                          {values.oldShowPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
                     label="Old Password"
-                    autoFocus
                   />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    fullWidth
-                    id="newPassword"
-                    label="New Password"
-                    name="newPassword"
-                    autoComplete="family-name"
+                </FormControl>
+                <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+                  <InputLabel htmlFor="outlined-adornment-password">New Password</InputLabel>
+                  <OutlinedInput
+                    name="oldPassword"
+                    id="Old Password"
+
+                    type={values.newShowPassword ? 'text' : 'password'}
+                    value={values.newPassword}
+                    onChange={handleChange('newPassword')}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickNewShowPassword}
+                          edge="end"
+                        >
+                          {values.newShowPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    label="Old Password"
                   />
-                </Grid>
+                </FormControl>
               </Grid>
               {/* <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
@@ -263,6 +328,6 @@ export default function Profile() {
           </Box>
         </Grid>
       </Grid>
-    </ThemeProvider>
+    </ThemeProvider >
   );
 }

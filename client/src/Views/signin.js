@@ -4,6 +4,9 @@ import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import OutlinedInput from "@mui/material/OutlinedInput";
 import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
@@ -15,6 +18,13 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import SigninService from "../Service/SigninService";
 import Cookies from "universal-cookie";
+import IconButton from '@mui/material/IconButton';
+import Input from '@mui/material/Input';
+import FilledInput from '@mui/material/FilledInput';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormHelperText from '@mui/material/FormHelperText';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 function Copyright(props) {
   return (
@@ -43,6 +53,22 @@ export default function Signin() {
   };
   const navigateProfile = () => {
     navigate("/profile");
+  };
+
+  const [values, setValues] = React.useState({
+    password: '',
+    showPassword: false,
+  });
+
+  const handleChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
+
+  const handleClickShowPassword = () => {
+    setValues({
+      ...values,
+      showPassword: !values.showPassword,
+    });
   };
 
   const handleSubmit = (event) => {
@@ -101,16 +127,38 @@ export default function Signin() {
               autoComplete="email"
               autoFocus
             />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
+            <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+              <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+              <OutlinedInput
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                type={values.showPassword ? 'text' : 'password'}
+                value={values.password}
+                onChange={handleChange('password')}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      edge="end"
+                    >
+                      {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+            <Box
+              sx={{
+                marginTop: 1,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            ></Box>
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
