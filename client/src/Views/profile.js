@@ -13,6 +13,12 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import FaceIcon from "@mui/icons-material/Face";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useState, useEffect } from "react";
+import Cookies from "universal-cookie";
+import axios, * as others from "axios";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import OutlinedInput from "@mui/material/OutlinedInput";
 
 function Copyright(props) {
   return (
@@ -35,6 +41,13 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Profile() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState({});
+  const cookie = new Cookies();
+  cookie.get("email");
+  const email = cookie.cookies.email;
+  let user1 = {};
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -44,6 +57,36 @@ export default function Profile() {
     });
   };
 
+  useEffect(() => {
+    const email = cookie.get("email");
+    var data = JSON.stringify({
+      email: email,
+    });
+    var config = {
+      method: "get",
+      url: "http://localhost:3000/users/profile/" + email,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: data,
+    };
+
+    axios(config)
+      .then((response) => {
+        setUser(response.data.message[0]);
+
+        setIsLoading(false);
+        user1 = response.data.message[0];
+        console.log(user);
+        console.log(user1.name);
+      })
+      .catch((error) => {
+        setUser(error);
+      }); // Your code here
+  }, []);
+  if (isLoading) {
+    return <div> Loading ... </div>;
+  }
   return (
     <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: "100vh" }}>
@@ -81,7 +124,7 @@ export default function Profile() {
               <FaceIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Current User
+              {user.name} {user.lastname}
             </Typography>
             <Box
               component="form"
@@ -91,32 +134,30 @@ export default function Profile() {
             >
               <TextField
                 margin="normal"
-                required
                 fullWidth
                 disabled
                 id="outlined-disabled-name"
-                label="Name" //current user name
+                label={user.name} //current user name
                 name="name"
                 autoFocus
               />
+
               <TextField
                 margin="normal"
-                required
                 fullWidth
                 disabled
                 id="outlined-disabled-lastname"
                 name="lastname"
-                label="Lastname"
+                label={user.lastname}
                 type="lastname"
               />
               <TextField
                 margin="normal"
-                required
                 fullWidth
                 disabled
                 id="outlined-disabled-email"
                 name="email"
-                label="Email"
+                label={user.email}
                 type="email"
               />
               <Box
@@ -133,7 +174,6 @@ export default function Profile() {
                   <TextField
                     autoComplete="given-name"
                     name="oldPassword"
-                    required
                     fullWidth
                     id="Old Password"
                     label="Old Password"
@@ -142,7 +182,6 @@ export default function Profile() {
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <TextField
-                    required
                     fullWidth
                     id="newPassword"
                     label="New Password"

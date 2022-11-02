@@ -37,6 +37,14 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Signin() {
+  const navigate = useNavigate();
+  const handle = () => {
+    navigate("/signup");
+  };
+  const handleProf = () => {
+    navigate("/profile");
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -45,13 +53,11 @@ export default function Signin() {
     const obj = [email, password];
     console.log(obj);
     const response = SigninService(obj);
+    // if respone true
+    handleProf();
     const cookies = new Cookies();
     cookies.set("email", email, { path: "/" });
     console.log(response);
-  };
-  const navigate = useNavigate();
-  const handle = () => {
-    navigate("/signup");
   };
 
   return (
@@ -111,11 +117,11 @@ export default function Signin() {
               Sign In
             </Button>
             <Grid container>
-              <Grid item xs>
+              {/* <Grid item xs>
                 <Link href="#" variant="body2">
                   Forgot password?
                 </Link>
-              </Grid>
+              </Grid> */}
               <Grid item>
                 <Link onClick={handle} href="#" variant="body2">
                   {"Don't have an account? Sign Up"}
@@ -124,7 +130,7 @@ export default function Signin() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+        {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
       </Container>
     </ThemeProvider>
   );

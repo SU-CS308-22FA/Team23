@@ -1,8 +1,8 @@
 var express = require("express");
 var router = express.Router();
 const userModel = require("../models/user.model");
-let bcrypt = require('bcrypt');
-let auth = require('../controller/auth');
+let bcrypt = require("bcrypt");
+let auth = require("../controller/auth");
 
 // /* GET users listing. */
 // router.get("/", function (req, res, next) {
@@ -18,10 +18,10 @@ router.post("/signin", async (req, res) => {
     let comparisonResult = await bcrypt.compare(password, users[0].password);
     if (comparisonResult) {
       let token = auth.generateToken(users[0]);
-      res.cookie('auth_token', token);
+      res.cookie("auth_token", token);
       res.send({
-        redirectURL: '/',
-        message: 'correct email'
+        redirectURL: "/",
+        message: "correct email",
       });
     } else {
       console.log("wrong password");
@@ -29,8 +29,7 @@ router.post("/signin", async (req, res) => {
   } else {
     console.log("wrong email");
   }
-})
-
+});
 
 router.post("/signup", async (req, res) => {
   //check if the user registered before
@@ -48,19 +47,31 @@ router.post("/signup", async (req, res) => {
         console.log(error);
       } else {
         res.send({
-          redirectURL: '/signin',
-          message: 'data inserted'
+          redirectURL: "/signin",
+          message: "data inserted",
         });
       }
     });
   } else {
-    res.send({ message: 'Rejected' });
+    res.send({ message: "Rejected" });
   }
   //res.send("Login page");
 });
 
-router.get("/profile", function (req, res) {
-  res.send("Profile page");
+router.get("/profile/:email", async function (req, res) {
+  let email = req.params.email;
+  console.log(email);
+  console.log("profile");
+
+  let users = await userModel.find().where({ email: email });
+  console.log(users);
+  if (users.length > 0) {
+    res.send({
+      message: users,
+    });
+  } else {
+    console.log("wrong email");
+  }
 });
 
 // router.post("save", function (req, res) {

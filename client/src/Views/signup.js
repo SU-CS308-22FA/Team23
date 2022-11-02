@@ -36,12 +36,10 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignUp() {
-
   const navigate = useNavigate();
   const handle = () => {
     navigate("/signin");
   };
-
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -58,9 +56,7 @@ export default function SignUp() {
     });
 
     handle();
-
   };
-
 
   return (
     <ThemeProvider theme={theme}>
@@ -129,14 +125,14 @@ export default function SignUp() {
                   autoComplete="new-password"
                 />
               </Grid>
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <FormControlLabel
                   control={
                     <Checkbox value="allowExtraEmails" color="primary" />
                   }
                   label="I want to receive inspiration, marketing promotions and updates via email."
                 />
-              </Grid>
+              </Grid> */}
             </Grid>
             <Button
               type="submit"
@@ -155,7 +151,7 @@ export default function SignUp() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
+        {/* <Copyright sx={{ mt: 5 }} /> */}
       </Container>
     </ThemeProvider>
   );
