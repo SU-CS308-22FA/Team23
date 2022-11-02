@@ -93,8 +93,6 @@ export default function Profile() {
 
         setIsLoading(false);
         user1 = response.data.message[0];
-        console.log(user);
-        console.log(user1.name);
       })
       .catch((error) => {
         setUser(error);

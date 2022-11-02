@@ -41,7 +41,7 @@ export default function Signin() {
   const handle = () => {
     navigate("/signup");
   };
-  const handleProf = () => {
+  const navigateProfile = () => {
     navigate("/profile");
   };
 
@@ -51,13 +51,20 @@ export default function Signin() {
     let email = data.get("email");
     let password = data.get("password");
     const obj = [email, password];
-    console.log(obj);
-    const response = SigninService(obj);
+
+    let response = SigninService(obj);
+    console.log(response);
+    response.then((res) => {
+      console.log(res);
+    });
+    // SigninService(obj).then((response) => {
+    //   console.log(response, "asdasdasd");
+    // });
+
     // if respone true
-    handleProf();
+    navigateProfile();
     const cookies = new Cookies();
     cookies.set("email", email, { path: "/" });
-    console.log(response);
   };
 
   return (

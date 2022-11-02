@@ -1,30 +1,27 @@
 import axios, * as others from "axios";
 
 export default async function SigninService(props) {
-    let email = props[0];
-    let password = props[1];
-    var data = JSON.stringify({
-        email: email,
-        password: password
+  let email = props[0];
+  let password = props[1];
+  var data = JSON.stringify({
+    email: email,
+    password: password,
+  });
+
+  var config = {
+    method: "post",
+    url: "http://localhost:3000/users/signin",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    data: data,
+  };
+
+  axios(config)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
     });
-    console.log(data);
-
-
-    var config = {
-        method: 'post',
-        url: 'http://localhost:3000/users/signin',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        data: data
-    };
-
-    axios(config)
-        .then(function (response) {
-            console.log(JSON.stringify(response.data));
-            return 1;
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
-} 
+}

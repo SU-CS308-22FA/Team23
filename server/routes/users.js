@@ -116,7 +116,7 @@ router.put("/update", async function (req, res) {
   // }
 });
 
-router.put("/delete", async function (req, res) {
+router.delete("/delete", async function (req, res) {
   let email = req.body.email;
 
   let users = await userModel.find().where({ email: email });
@@ -124,7 +124,7 @@ router.put("/delete", async function (req, res) {
     let query = { email: email };
     let newValue = { $set: { status: false } };
 
-    userModel.updateOne(query, newValue, () => {
+    userModel.deleteOne(query, () => {
       console.log(query, newValue);
 
       console.log("1 document updated");

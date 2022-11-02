@@ -9,7 +9,7 @@ export default async function ProfileService(props) {
   console.log(email);
 
   var config = {
-    method: "put",
+    method: "delete",
     url: "http://localhost:3000/users/delete",
     headers: {
       "Content-Type": "application/json",
