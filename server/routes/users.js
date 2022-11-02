@@ -26,6 +26,10 @@ router.post("/signin", async (req, res) => {
         message: "correct email",
       });
     } else {
+      // res.send({
+      //   redirectURL: "/",
+      //   message: "wrong password",
+      // });
       console.log("wrong password");
     }
   } else {

@@ -21,6 +21,7 @@ async function SigninService(props) {
   await axios(config)
     .then(function (response) {
       console.log(response);
+
       result = response.data;
     })
     .catch(function (error) {

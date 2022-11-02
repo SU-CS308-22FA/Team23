@@ -25,6 +25,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import FormHelperText from "@mui/material/FormHelperText";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { useState, useEffect } from "react";
 
 function Copyright(props) {
   return (
@@ -47,6 +48,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Signin() {
+  const [flag, setFlag] = useState(false);
   const navigate = useNavigate();
   const handle = () => {
     navigate("/signup");
@@ -78,12 +80,18 @@ export default function Signin() {
     let password = data.get("password");
     const obj = [email, password];
 
-    SigninService(obj).then((response) => {
-      console.log(response);
-    });
-
+    SigninService(obj)
+      .then((response) => {
+        console.log(response);
+        navigateProfile();
+      })
+      .catch((err) => {
+        setFlag(true);
+        console.log(flag);
+      });
+    setFlag(true);
     // if respone true
-    navigateProfile();
+
     const cookies = new Cookies();
     cookies.set("email", email, { path: "/" });
   };
@@ -113,6 +121,7 @@ export default function Signin() {
             sx={{ mt: 1 }}
           >
             <TextField
+              error={flag}
               margin="normal"
               required
               fullWidth
@@ -127,6 +136,7 @@ export default function Signin() {
                 Password
               </InputLabel>
               <OutlinedInput
+                error={flag}
                 name="password"
                 label="Password"
                 type="password"
@@ -156,10 +166,11 @@ export default function Signin() {
                 alignItems: "center",
               }}
             ></Box>
-            <FormControlLabel
+            {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
-            />
+            /> */}
+            {flag === true ? "Wrong email and password!" : ""}
             <Button
               type="submit"
               fullWidth
