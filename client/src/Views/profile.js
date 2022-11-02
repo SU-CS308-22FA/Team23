@@ -19,6 +19,7 @@ import axios, * as others from "axios";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
+import ProfileService from "../Service/ProfileService";
 
 function Copyright(props) {
   return (
@@ -51,9 +52,12 @@ export default function Profile() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
+    let newPassword = data.get("newPassword");
+    let oldPassword = data.get("oldPassword");
+    const obj = [newPassword, oldPassword, user];
+
+    ProfileService(obj).then((response) => {
+      console.log(response, "asdasdasd");
     });
   };
 

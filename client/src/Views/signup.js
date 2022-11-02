@@ -49,8 +49,6 @@ export default function SignUp() {
     let email = data.get("email");
     let password = data.get("password");
     const obj = [name, lastname, email, password];
-    const response = SignupService(obj);
-    console.log(obj);
     SignupService(obj).then((response) => {
       console.log(response, "asdasdasd");
     });
