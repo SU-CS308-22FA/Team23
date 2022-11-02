@@ -64,6 +64,11 @@ export default function Profile() {
     });
   };
 
+  const handleLogout = (event) => {
+    event.preventDefault();
+    navigate("/signin");
+  };
+
   const handleDelete = (event) => {
     event.preventDefault();
     const obj = [user];
@@ -217,22 +222,44 @@ export default function Profile() {
                 Update Profile
               </Button>
             </Box>
-            <Box
-              component="form"
-              noValidate
-              onSubmit={handleDelete}
-              sx={{ mt: 1 }}
-            >
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-                color="error"
-              >
-                Delete Profile
-              </Button>
-            </Box>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <Box
+                  component="form"
+                  noValidate
+                  onSubmit={handleDelete}
+                  sx={{ mt: 1 }}
+                >
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2 }}
+                    color="error"
+                  >
+                    Delete Profile
+                  </Button>
+                </Box>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <Box
+                  component="form"
+                  noValidate
+                  onSubmit={handleLogout}
+                  sx={{ mt: 1 }}
+                >
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2 }}
+                    color="primary"
+                  >
+                    Logout
+                  </Button>
+                </Box>
+              </Grid>
+            </Grid>
           </Box>
         </Grid>
       </Grid>
