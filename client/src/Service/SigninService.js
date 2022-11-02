@@ -1,8 +1,9 @@
 import axios, * as others from "axios";
 
-export default async function SigninService(props) {
+async function SigninService(props) {
   let email = props[0];
   let password = props[1];
+  let result = {};
   var data = JSON.stringify({
     email: email,
     password: password,
@@ -17,11 +18,15 @@ export default async function SigninService(props) {
     data: data,
   };
 
-  axios(config)
-    .then((response) => {
+  await axios(config)
+    .then(function (response) {
       console.log(response);
+      result = response.data;
     })
     .catch(function (error) {
       console.log(error);
     });
+  return result;
 }
+
+export default SigninService;

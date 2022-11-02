@@ -18,13 +18,13 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import SigninService from "../Service/SigninService";
 import Cookies from "universal-cookie";
-import IconButton from '@mui/material/IconButton';
-import Input from '@mui/material/Input';
-import FilledInput from '@mui/material/FilledInput';
-import InputAdornment from '@mui/material/InputAdornment';
-import FormHelperText from '@mui/material/FormHelperText';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import IconButton from "@mui/material/IconButton";
+import Input from "@mui/material/Input";
+import FilledInput from "@mui/material/FilledInput";
+import InputAdornment from "@mui/material/InputAdornment";
+import FormHelperText from "@mui/material/FormHelperText";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 function Copyright(props) {
   return (
@@ -56,7 +56,7 @@ export default function Signin() {
   };
 
   const [values, setValues] = React.useState({
-    password: '',
+    password: "",
     showPassword: false,
   });
 
@@ -78,14 +78,9 @@ export default function Signin() {
     let password = data.get("password");
     const obj = [email, password];
 
-    let response = SigninService(obj);
-    console.log(response);
-    response.then((res) => {
-      console.log(res);
+    SigninService(obj).then((response) => {
+      console.log(response);
     });
-    // SigninService(obj).then((response) => {
-    //   console.log(response, "asdasdasd");
-    // });
 
     // if respone true
     navigateProfile();
@@ -127,17 +122,19 @@ export default function Signin() {
               autoComplete="email"
               autoFocus
             />
-            <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+            <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
+              <InputLabel htmlFor="outlined-adornment-password">
+                Password
+              </InputLabel>
               <OutlinedInput
                 name="password"
                 label="Password"
                 type="password"
                 id="password"
                 autoComplete="current-password"
-                type={values.showPassword ? 'text' : 'password'}
+                type={values.showPassword ? "text" : "password"}
                 value={values.password}
-                onChange={handleChange('password')}
+                onChange={handleChange("password")}
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton

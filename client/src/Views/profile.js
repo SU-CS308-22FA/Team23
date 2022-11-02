@@ -22,13 +22,13 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import ProfileService from "../Service/ProfileService";
 import DeleteService from "../Service/DeleteService";
 import { useNavigate } from "react-router-dom";
-import IconButton from '@mui/material/IconButton';
-import Input from '@mui/material/Input';
-import FilledInput from '@mui/material/FilledInput';
-import InputAdornment from '@mui/material/InputAdornment';
-import FormHelperText from '@mui/material/FormHelperText';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import IconButton from "@mui/material/IconButton";
+import Input from "@mui/material/Input";
+import FilledInput from "@mui/material/FilledInput";
+import InputAdornment from "@mui/material/InputAdornment";
+import FormHelperText from "@mui/material/FormHelperText";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 function Copyright(props) {
   return (
@@ -60,8 +60,8 @@ export default function Profile() {
   let user1 = {};
 
   const [values, setValues] = React.useState({
-    oldPassword: '',
-    newPassword: '',
+    oldPassword: "",
+    newPassword: "",
 
     oldShowPassword: false,
     newShowPassword: false,
@@ -84,7 +84,6 @@ export default function Profile() {
       newShowPassword: !values.newShowPassword,
     });
   };
-
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -222,20 +221,23 @@ export default function Profile() {
                   alignItems: "center",
                 }}
               ></Box>
-              <Grid container spacing={2}
-                fullWidth
+              <Grid
+                container
+                spacing={2}
                 direction="row"
                 alignItems="center"
-                justifyContent="center">
-                <FormControl sx={{ m: 1, width: '25ch', }} variant="outlined">
-                  <InputLabel htmlFor="outlined-adornment-password">Old Password</InputLabel>
+                justifyContent="center"
+              >
+                <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
+                  <InputLabel htmlFor="outlined-adornment-password">
+                    Old Password
+                  </InputLabel>
                   <OutlinedInput
                     name="oldPassword"
-                    id="Old Password"
-
-                    type={values.oldShowPassword ? 'text' : 'password'}
+                    id="old_password"
+                    type={values.oldShowPassword ? "text" : "password"}
                     value={values.oldPassword}
-                    onChange={handleChange('oldPassword')}
+                    onChange={handleChange("oldPassword")}
                     endAdornment={
                       <InputAdornment position="end">
                         <IconButton
@@ -243,22 +245,27 @@ export default function Profile() {
                           onClick={handleClickOldShowPassword}
                           edge="end"
                         >
-                          {values.oldShowPassword ? <VisibilityOff /> : <Visibility />}
+                          {values.oldShowPassword ? (
+                            <VisibilityOff />
+                          ) : (
+                            <Visibility />
+                          )}
                         </IconButton>
                       </InputAdornment>
                     }
                     label="Old Password"
                   />
                 </FormControl>
-                <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-                  <InputLabel htmlFor="outlined-adornment-password">New Password</InputLabel>
+                <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
+                  <InputLabel htmlFor="outlined-adornment-password">
+                    New Password
+                  </InputLabel>
                   <OutlinedInput
                     name="oldPassword"
-                    id="Old Password"
-
-                    type={values.newShowPassword ? 'text' : 'password'}
+                    id="new_password"
+                    type={values.newShowPassword ? "text" : "password"}
                     value={values.newPassword}
-                    onChange={handleChange('newPassword')}
+                    onChange={handleChange("newPassword")}
                     endAdornment={
                       <InputAdornment position="end">
                         <IconButton
@@ -266,7 +273,11 @@ export default function Profile() {
                           onClick={handleClickNewShowPassword}
                           edge="end"
                         >
-                          {values.newShowPassword ? <VisibilityOff /> : <Visibility />}
+                          {values.newShowPassword ? (
+                            <VisibilityOff />
+                          ) : (
+                            <Visibility />
+                          )}
                         </IconButton>
                       </InputAdornment>
                     }
@@ -328,6 +339,6 @@ export default function Profile() {
           </Box>
         </Grid>
       </Grid>
-    </ThemeProvider >
+    </ThemeProvider>
   );
 }
