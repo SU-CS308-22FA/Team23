@@ -20,6 +20,8 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import ProfileService from "../Service/ProfileService";
+import DeleteService from "../Service/DeleteService";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -42,6 +44,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Profile() {
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState({});
   const cookie = new Cookies();
@@ -59,6 +62,15 @@ export default function Profile() {
     ProfileService(obj).then((response) => {
       console.log(response, "asdasdasd");
     });
+  };
+
+  const handleDelete = (event) => {
+    event.preventDefault();
+    const obj = [user];
+    DeleteService(obj).then((response) => {
+      console.log(response, "asdasdasd");
+    });
+    navigate("/signin");
   };
 
   useEffect(() => {
@@ -205,6 +217,22 @@ export default function Profile() {
                 sx={{ mt: 3, mb: 2 }}
               >
                 Update Profile
+              </Button>
+            </Box>
+            <Box
+              component="form"
+              noValidate
+              onSubmit={handleDelete}
+              sx={{ mt: 1 }}
+            >
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                color="error"
+              >
+                Delete Profile
               </Button>
             </Box>
           </Box>

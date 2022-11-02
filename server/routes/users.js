@@ -116,6 +116,24 @@ router.put("/update", async function (req, res) {
   // }
 });
 
+router.put("/delete", async function (req, res) {
+  let email = req.body.email;
+
+  let users = await userModel.find().where({ email: email });
+  if (users.length > 0) {
+    let query = { email: email };
+    let newValue = { $set: { status: false } };
+
+    userModel.updateOne(query, newValue, () => {
+      console.log(query, newValue);
+
+      console.log("1 document updated");
+    });
+  } else {
+    console.log("wrong email");
+  }
+});
+
 // router.post("save", function (req, res) {
 //   var newUser = new userModel();
 //   newUser.name = req.body.name;
