@@ -17,6 +17,12 @@ For any further bugs, you can contact with emails provided in the footer.
 
 ### How To Install
 
+Repositories of the project
+
+   * Frontend: https://github.com/SU-CS308-22FA/Team23-Frontend
+   
+   * Backend: https://github.com/SU-CS308-22FA/Team23-Backend
+
 1. To obtain the source code for this project, you can clone the repositories of both backend and frontend using the following commands:
    ```sh
    git clone https://github.com/SU-CS308-22FA/Team23-Frontend.git
