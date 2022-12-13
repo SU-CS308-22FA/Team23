@@ -76,17 +76,20 @@ Repositories of the project
   
     .
     ├── bin
-    ├── config                    # Documentation files (alternatively `doc`),
-    ├── controller                # Documentation files (alternatively `doc`),
-    ├── middleware                # Documentation files (alternatively `doc`)
+    ├── config                          # Config files for nodejs
+    ├── controller               
+    │   ├── mongoDB.controller.js           #  
+    │   ├── product.controller.js           # 
+    │   ├── user.controller.js              # 
+    ├── middleware                
     ├── model
-    ├── public                    # Documentation files (alternatively `doc`)    
+    ├── public                      
     ├── routes
-    ├── seed                      # Documentation files (alternatively `doc`)    
+    ├── seed                      # Seed files for generating fake data
     ├── utils
-    ├── views                     # Documentation files (alternatively `doc`)
+    ├── views                     # 
     ├── app.js
-    ├── package.json              # Documentation files (alternatively `doc`)
+    ├── package.json              
     └── README.md  
     
    
