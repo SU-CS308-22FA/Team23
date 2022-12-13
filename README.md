@@ -57,9 +57,9 @@ Repositories of the project
     │   │   ├── Calendar           # Components for calendar in admin page
     │   │   ├── Card               # Components for listing auctions as cards
     │   │   ├── HotAuctions        # Components for hot auctions section
-    │   │   ├── Navbar            
+    │   │   ├── Navbar             # Components for navigation bar
     │   │   ├── Product            # Components for product page
-    │   │   ├── Utils        
+    │   │   ├── Utils              # Static component divider
     │   ├── constant           # Constant variables such as server url
     │   ├── service            # Axios functions for http requests
     │   ├── style              # Css files for components
@@ -77,17 +77,17 @@ Repositories of the project
     .
     ├── bin
     ├── config                          # Config files for nodejs
-    ├── controller               
-    │   ├── mongoDB.controller.js           #  
-    │   ├── product.controller.js           # 
-    │   ├── user.controller.js              # 
+    ├── controller                          # Controller files for database operations
+    │   ├── mongoDB.controller.js           
+    │   ├── product.controller.js            
+    │   ├── user.controller.js               
     ├── middleware                
-    ├── model
-    ├── public                      
-    ├── routes
+    ├── model                     #Schemas for mongodb 
+    ├── public                    
+    ├── routes                    # Paths and functions from controllers are listed
     ├── seed                      # Seed files for generating fake data
     ├── utils
-    ├── views                     # 
+    ├── views                     
     ├── app.js
     ├── package.json              
     └── README.md  
