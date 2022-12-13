@@ -97,4 +97,37 @@ Repositories of the project
 
 ### How to Deploy
 
+To deploy this project on Heroku, follow these steps:
+
+<ol>
+  
+  <li>
+  First, make sure you have a Heroku account and the Heroku CLI installed on your machine.
+  </li>
+  
+  <li>
+  Go to directory of the project for both backend and frontend.
+  </li>
+  
+  <li>
+  Next, run the following command to create a new Heroku app:  
+    
+ ```sh
+ heroku create -a app-name
+ ``` 
+    
+  </li>
+  
+  <li>
+    
+  Finally, run the following command to deploy the app to Heroku:
+    
+ ```sh
+ git push heroku main
+ ``` 
+    
+  </li>
+</ol>
+
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
