@@ -46,12 +46,38 @@ Repositories of the project
 
 ### Directory Structure
 
-Frontend 
+<ol>
+  <b>1. Frontend</b>
+  
+    .
+    ├── public
+    ├── src                    # React source file
+    │   ├── components         # React components 
+    │   │   ├── ActiveBids         # Components for active bids page
+    │   │   ├── Calendar           # Components for calendar in admin page
+    │   │   ├── Card               # Components for listing auctions as cards
+    │   │   ├── HotAuctions        # Components for hot auctions section
+    │   │   ├── Navbar            
+    │   │   ├── Product            # Components for product page
+    │   │   ├── Utils        
+    │   ├── constant           # Constant variables such as server url
+    │   ├── service            # Axios functions for http requests
+    │   ├── style              # Css files for components
+    │   ├── utils              # Utility functions
+    │   ├── views              # Website Pages
+    │   ├── app.js             
+    │   ├── index.js           
+    ├── package.json           
+    └── README.md  
 
+
+  <b>2. Backend</b>
+  
+  
     .
     ├── bin
     ├── config                    # Documentation files (alternatively `doc`),
-    ├── controller
+    ├── controller                # Documentation files (alternatively `doc`),
     ├── middleware                # Documentation files (alternatively `doc`)
     ├── model
     ├── public                    # Documentation files (alternatively `doc`)    
@@ -64,22 +90,7 @@ Frontend
     └── README.md  
     
    
- Backend
-
-    .
-    ├── public
-    ├── src                    # Documentation files (alternatively `doc`)
-    │   ├── components         # Table of contents
-    │   ├── constant           # Frequently asked questions
-    │   ├── service            # Miscellaneous information
-    │   ├── style              # Getting started guide
-    │   ├── utils              # Table of contents
-    │   ├── views              # Frequently asked questions
-    │   ├── app.js             # Miscellaneous information
-    │   ├── index.js           # Getting started guide                 # Miscellaneous information
-    ├── package.json           # Getting started guide
-    └── README.md  
-
+</ol>   
 
 ### How to Deploy
 
